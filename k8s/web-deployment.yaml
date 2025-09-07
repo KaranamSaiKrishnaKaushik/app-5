@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  namespace: app-5-dev
+spec:
+  revisionHistoryLimit: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-app-5
+  template:
+    metadata:
+      labels:
+        app: angular-app-5
+    spec:
+      containers:
+        - name: angular-app-5
+          image: dokkaushik/angular-app-5:98f60e5f2e75278e6857e5b1e6a7cef89c2be142
+          ports:
+            - containerPort: 80

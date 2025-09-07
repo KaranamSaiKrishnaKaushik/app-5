@@ -1,0 +1,59 @@
+# Node
+#node_modules/
+#dist/
+
+# Dotnet
+#bin/
+#obj/
+
+# Docker
+*.log
+
+# Others
+#.env
+
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/angular-app-5/node_modules
+/angular-app-5/npm-debug.log
+/angular-app-5/yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/angular-app-5/.angular/cache
+/angular-app-5/.sass-cache/
+/angular-app-5/connect.lock
+/angular-app-5/coverage
+/angular-app-5/libpeerconnection.log
+/angular-app-5/testem.log
+/angular-app-5/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+
+# Others
+.env

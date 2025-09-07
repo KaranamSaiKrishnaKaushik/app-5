@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  namespace: app-5-dev
+spec:
+  revisionHistoryLimit: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dotnet-app-5
+  template:
+    metadata:
+      labels:
+        app: dotnet-app-5
+    spec:
+      containers:
+        - name: dotnet-app-5
+          image: dokkaushik/dotnet-app-5:98f60e5f2e75278e6857e5b1e6a7cef89c2be142
+          ports:
+            - containerPort: 5000
+          env:
+            # Helpful in k8s behind proxies; not strictly required
+            - name: ASPNETCORE_URLS
+              value: http://+:5000
