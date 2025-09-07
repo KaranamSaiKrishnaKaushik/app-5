@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dotnet-app-5
-          image: dokkaushik/dotnet-app-5:98f60e5f2e75278e6857e5b1e6a7cef89c2be142
+          image: dokkaushik/dotnet-app-5:df7bcf221a056b4dcecda201bdd0ae767dbdfd80
           ports:
             - containerPort: 5000
           env:
