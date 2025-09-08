@@ -16,10 +16,21 @@ spec:
     spec:
       containers:
         - name: dotnet-app-5
-          image: dokkaushik/dotnet-app-5:df7bcf221a056b4dcecda201bdd0ae767dbdfd80
+          image: dokkaushik/dotnet-app-5:latest
           ports:
             - containerPort: 5000
           env:
-            # Helpful in k8s behind proxies; not strictly required
             - name: ASPNETCORE_URLS
               value: http://+:5000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 20

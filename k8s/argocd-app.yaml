@@ -1,18 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-5
+  name: app-5-dev
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/KaranamSaiKrishnaKaushik/app-5.git'
     targetRevision: main
-    path: k8s  
+    path: k8s/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: app-5
+    namespace: app-5-dev
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
