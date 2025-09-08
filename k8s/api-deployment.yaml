@@ -22,15 +22,15 @@ spec:
           env:
             - name: ASPNETCORE_URLS
               value: http://+:5000
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 5000
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 5000
-            initialDelaySeconds: 10
-            periodSeconds: 20
+          #readinessProbe:
+          #  httpGet:
+          #    path: /health
+          #    port: 5000
+          #  initialDelaySeconds: 5
+          #  periodSeconds: 10
+          #livenessProbe:
+          #  httpGet:
+          #    path: /health
+          #    port: 5000
+          #  initialDelaySeconds: 10
+          #  periodSeconds: 20

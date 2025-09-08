@@ -12,6 +12,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args ?? new string[0]);
 
         builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddScoped<IMyService, MyService>();
