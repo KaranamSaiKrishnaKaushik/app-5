@@ -7,97 +7,97 @@ on:
 permissions:
   contents: write
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      # Enable Docker Buildx
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # Login to Docker Hub
-      - name: Log in to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-      # Build & push .NET API (with build cache)
-      - name: Build & Push Backend
-        uses: docker/build-push-action@v6
-        with:
-          context: ./dotnet-app-5
-          file: ./dotnet-app-5/Dockerfile
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: |
-            dokkaushik/dotnet-app-5:${{ github.sha }}
-            dokkaushik/dotnet-app-5:latest
-          cache-from: type=registry,ref=dokkaushik/dotnet-app-5:buildcache
-          cache-to: type=registry,ref=dokkaushik/dotnet-app-5:buildcache,mode=max
-
-      # Build & push Angular (with build cache)
-      - name: Build & Push Frontend
-        uses: docker/build-push-action@v6
-        with:
-          context: ./angular-app-5
-          file: ./angular-app-5/Dockerfile
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: |
-            dokkaushik/angular-app-5:${{ github.sha }}
-            dokkaushik/angular-app-5:latest
-          cache-from: type=registry,ref=dokkaushik/angular-app-5:buildcache
-          cache-to: type=registry,ref=dokkaushik/angular-app-5:buildcache,mode=max
-
 #jobs:
 #  build-and-deploy:
 #    runs-on: ubuntu-latest
 #
 #    steps:
-#      # Checkout the repo
-#      - uses: actions/checkout@v3
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
+#      - uses: actions/checkout@v4
 #
-#      # Cache npm to avoid hitting rate limits
-#      - name: Cache npm
-#        uses: actions/cache@v4
-#        with:
-#          path: ~/.npm
-#          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-#          restore-keys: |
-#            ${{ runner.os }}-node-
-#
-#      # DockerHub login
-#      - name: Log in to DockerHub
-#        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-#
-#      # Set up Docker Buildx for multi-arch builds
+#      # Enable Docker Buildx
 #      - name: Set up Docker Buildx
-#        run: |
-#          docker buildx create --use
+#        uses: docker/setup-buildx-action@v3
 #
-#      # Build & Push Backend (multi-arch)
+#      # Login to Docker Hub
+#      - name: Log in to DockerHub
+#        uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+#
+#      # Build & push .NET API (with build cache)
 #      - name: Build & Push Backend
-#        run: |
-#          docker buildx build \
-#            --platform linux/amd64,linux/arm64 \
-#            -t dokkaushik/dotnet-app-5:${{ github.sha }} \
-#            -f dotnet-app-5/Dockerfile \
-#            --push ./dotnet-app-5
+#        uses: docker/build-push-action@v6
+#        with:
+#          context: ./dotnet-app-5
+#          file: ./dotnet-app-5/Dockerfile
+#          push: true
+#          platforms: linux/amd64,linux/arm64
+#          tags: |
+#            dokkaushik/dotnet-app-5:${{ github.sha }}
+#            dokkaushik/dotnet-app-5:latest
+#          cache-from: type=registry,ref=dokkaushik/dotnet-app-5:buildcache
+#          cache-to: type=registry,ref=dokkaushik/dotnet-app-5:buildcache,mode=max
 #
-#      # Build & Push Frontend (multi-arch)
+#      # Build & push Angular (with build cache)
 #      - name: Build & Push Frontend
-#        run: |
-#          docker buildx build \
-#            --platform linux/amd64,linux/arm64 \
-#            -t dokkaushik/angular-app-5:${{ github.sha }} \
-#            -f angular-app-5/Dockerfile \
-#            --push ./angular-app-5
+#        uses: docker/build-push-action@v6
+#        with:
+#          context: ./angular-app-5
+#          file: ./angular-app-5/Dockerfile
+#          push: true
+#          platforms: linux/amd64,linux/arm64
+#          tags: |
+#            dokkaushik/angular-app-5:${{ github.sha }}
+#            dokkaushik/angular-app-5:latest
+#          cache-from: type=registry,ref=dokkaushik/angular-app-5:buildcache
+#          cache-to: type=registry,ref=dokkaushik/angular-app-5:buildcache,mode=max
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Cache npm to avoid hitting rate limits
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # DockerHub login
+      - name: Log in to DockerHub
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      # Set up Docker Buildx for multi-arch builds
+      - name: Set up Docker Buildx
+        run: |
+          docker buildx create --use
+
+      # Build & Push Backend (multi-arch)
+      - name: Build & Push Backend
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            -t dokkaushik/dotnet-app-5:${{ github.sha }} \
+            -f dotnet-app-5/Dockerfile \
+            --push ./dotnet-app-5
+
+      # Build & Push Frontend (multi-arch)
+      - name: Build & Push Frontend
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            -t dokkaushik/angular-app-5:${{ github.sha }} \
+            -f angular-app-5/Dockerfile \
+            --push ./angular-app-5
 
       # Update manifests with new image tags (correct dev path)
       - name: Update manifests
