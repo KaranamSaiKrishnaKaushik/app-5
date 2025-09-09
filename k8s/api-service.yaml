@@ -11,5 +11,5 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 5000
-      nodePort: 30080   # Localhost:30080 -> API
+      nodePort: 30082   # Localhost:30082 -> API
   type: NodePort        # Switch to ClusterIP in prod
