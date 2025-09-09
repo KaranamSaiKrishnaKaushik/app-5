@@ -5,9 +5,11 @@ metadata:
   namespace: app-5-dev
 spec:
   selector:
-    app: angular-app-5
+    app: angular-web
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
       targetPort: 80
-  type: ClusterIP
+      nodePort: 30081   # Localhost:30081 -> Frontend
+  type: NodePort        # Switch to ClusterIP in prod
