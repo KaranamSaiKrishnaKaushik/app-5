@@ -7,9 +7,11 @@ spec:
   selector:
     app: angular-app-5 #angular-web
   ports:
-    - name: http
+    #- name: http
       protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30081   # Localhost:30081 -> Frontend
-  type: NodePort        # Switch to ClusterIP in prod
+      #nodePort: 30081   # Localhost:30081 -> Frontend
+  type: NodePort        # Switch to ClusterIP in prod # Switch to NodePort in prod
+  externalTrafficPolicy: Cluster
+  sessionAffinity: None
