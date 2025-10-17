@@ -62,6 +62,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       # Cache npm to avoid hitting rate limits
       - name: Cache npm
@@ -110,6 +111,7 @@ jobs:
         run: |
           git config user.email "karanamsaikrishna.kaushik@gmail.com"
           git config user.name "KaranamSaiKrishnaKaushik"
+          git pull origin main --rebase
           git add k8s/api-deployment.yaml k8s/web-deployment.yaml
           git commit -m "update images to ${{ github.sha }}" || echo "No changes to commit"
           git push
