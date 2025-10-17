@@ -99,6 +99,13 @@ jobs:
             -t dokkaushik/angular-app-5:${{ github.sha }} \
             -f angular-app-5/Dockerfile \
             --push ./angular-app-5
+            
+      # Make sure repo is up to date first
+      - name: Pull latest main branch
+        run: |
+          git config user.email "karanamsaikrishna.kaushik@gmail.com"
+          git config user.name "KaranamSaiKrishnaKaushik"
+          git pull origin main --rebase
 
       # Update manifests with new image tags (correct dev path)
       - name: Update manifests
@@ -111,7 +118,6 @@ jobs:
         run: |
           git config user.email "karanamsaikrishna.kaushik@gmail.com"
           git config user.name "KaranamSaiKrishnaKaushik"
-          git pull origin main --rebase
           git add k8s/api-deployment.yaml k8s/web-deployment.yaml
           git commit -m "update images to ${{ github.sha }}" || echo "No changes to commit"
           git push
