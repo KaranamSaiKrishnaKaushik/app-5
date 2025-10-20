@@ -19,7 +19,7 @@ public class Program
 
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("AllowAll", policy =>
+            options.AddPolicy("AllowAngular", policy =>
             {
                 policy
             .WithOrigins(
@@ -32,6 +32,7 @@ public class Program
             });
         });
         var app = builder.Build();
+        app.UseCors("AllowAngular");
         app.UseRouting(); 
         app.UseCors("AllowAll");
         app.MapControllers();
