@@ -3,6 +3,11 @@ kind: Ingress
 metadata:
   name: api-ingress
   namespace: app-5-dev
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://angular5.138.2.131.203.nip.io:31787"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "Content-Type, Authorization"
 spec:
   ingressClassName: nginx
   rules:
