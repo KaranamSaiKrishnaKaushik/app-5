@@ -21,9 +21,14 @@ public class Program
         {
             options.AddPolicy("AllowAll", policy =>
             {
-                policy.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                policy
+            .WithOrigins(
+                "http://angular5.138.2.131.203.nip.io:31787",
+                "http://angular5.138.2.131.203.nip.io"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
             });
         });
         var app = builder.Build();

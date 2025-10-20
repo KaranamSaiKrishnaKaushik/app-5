@@ -9,7 +9,7 @@ spec:
     - host: api.138.2.131.203.nip.io
       http:
         paths:
-          - path: /api #/api(/|$)(.*)
+          - path: / #/api #/api(/|$)(.*)
             pathType: Prefix
             backend:
               service:
