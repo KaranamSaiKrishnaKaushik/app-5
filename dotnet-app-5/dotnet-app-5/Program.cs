@@ -32,9 +32,8 @@ public class Program
             });
         });
         var app = builder.Build();
-        app.UseCors("AllowAngular");
         app.UseRouting(); 
-        app.UseCors("AllowAll");
+        app.UseCors("AllowAngular");
         app.MapControllers();
 
         return app;
