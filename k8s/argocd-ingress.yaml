@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
+  ingressClassName: nginx
   rules:
     - host: argocd.158.180.44.215.nip.io
       http:
