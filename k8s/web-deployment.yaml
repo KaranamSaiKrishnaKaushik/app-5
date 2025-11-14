@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: angular-app-5
-          image: dokkaushik/angular-app-5:6f2cf7c8729bff3158b581b8a8f7f86fdcea33f0
+          image: dokkaushik/angular-app-5:333c87b5894cb12f1f533d5be914fafe2b212065
           ports:
             - containerPort: 80
           #readinessProbe:
