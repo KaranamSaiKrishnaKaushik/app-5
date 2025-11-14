@@ -12,6 +12,6 @@ spec:
       port: 80
       targetPort: 80
       #nodePort: 30081   # Localhost:30081 -> Frontend
-  type: NodePort        # Switch to ClusterIP in prod # Switch to NodePort in prod
-  externalTrafficPolicy: Cluster
-  sessionAffinity: None
+  type: ClusterIP        # Switch to ClusterIP in prod # Switch to NodePort in prod
+  #externalTrafficPolicy: Cluster
+  #sessionAffinity: None
