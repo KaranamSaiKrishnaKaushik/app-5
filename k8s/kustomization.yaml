@@ -13,6 +13,6 @@ resources:
   - argocd-ingress.yaml 
 images:
   - name: dokkaushik/angular-app-5
-    newTag: latest
+    newTag: a1323e362f38fbf3e7c471fba79d173580cfe996
   - name: dokkaushik/dotnet-app-5
-    newTag: latest
+    newTag: a1323e362f38fbf3e7c471fba79d173580cfe996
