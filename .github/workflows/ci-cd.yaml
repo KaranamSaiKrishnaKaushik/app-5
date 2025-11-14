@@ -122,6 +122,6 @@ jobs:
         run: |
           git config user.email "karanamsaikrishna.kaushik@gmail.com"
           git config user.name "KaranamSaiKrishnaKaushik"
-          git add k8s/api-deployment.yaml k8s/web-deployment.yaml
+          git add k8s/kustomization.yaml
           git commit -m "update images to ${{ github.sha }}" || echo "No changes to commit"
           git push
