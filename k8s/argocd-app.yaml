@@ -9,6 +9,8 @@ spec:
     repoURL: 'https://github.com/KaranamSaiKrishnaKaushik/app-5.git'
     targetRevision: main
     path: k8s  
+    kustomize:
+      version: v3
   destination:
     server: https://kubernetes.default.svc
     namespace: app-5-dev

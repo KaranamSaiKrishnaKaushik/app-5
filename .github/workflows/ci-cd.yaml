@@ -108,10 +108,14 @@ jobs:
           git pull origin main --rebase
 
       # Update manifests with new image tags (correct dev path)
-      - name: Update manifests
+      #- name: Update manifests
+      #  run: |
+      #    sed -i "s|^\(\s*image:\s*\).*dotnet-app-5:.*|\1dokkaushik/dotnet-app-5:${{ github.sha }}|" k8s/api-deployment.yaml
+      #    sed -i "s|^\(\s*image:\s*\).*angular-app-5:.*|\1dokkaushik/angular-app-5:${{ github.sha }}|" k8s/web-deployment.yaml
+
+      - name: Update Kustomize image tags
         run: |
-          sed -i "s|image: .*dotnet-app-5:.*|image: dokkaushik/dotnet-app-5:${{ github.sha }}|" k8s/api-deployment.yaml
-          sed -i "s|image: .*angular-app-5:.*|image: dokkaushik/angular-app-5:${{ github.sha }}|" k8s/web-deployment.yaml
+          sed -i "s|newTag:.*|newTag: ${{ github.sha }}|" k8s/kustomization.yaml
 
       # Commit & push updated manifests
       - name: Commit & Push manifests
