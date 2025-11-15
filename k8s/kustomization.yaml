@@ -13,6 +13,6 @@ resources:
   - argocd-ingress.yaml 
 images:
   - name: docker.io/dokkaushik/angular-app-5
-    newTag: latest
+    newTag: d42d5cfc48c0810be4d8d01c08013f46838fb03d
   - name: docker.io/dokkaushik/dotnet-app-5
-    newTag: latest
+    newTag: d42d5cfc48c0810be4d8d01c08013f46838fb03d
