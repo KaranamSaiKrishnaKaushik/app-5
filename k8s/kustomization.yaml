@@ -12,7 +12,7 @@ resources:
   - web-api-ingress.yaml
   - argocd-ingress.yaml 
 images:
-  - name: dokkaushik/angular-app-5
+  - name: docker.io/dokkaushik/angular-app-5
     newTag: latest
-  - name: dokkaushik/dotnet-app-5
+  - name: docker.io/dokkaushik/dotnet-app-5
     newTag: latest
