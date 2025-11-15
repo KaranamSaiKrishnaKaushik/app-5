@@ -5,11 +5,15 @@ metadata:
   namespace: app-5-dev
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/enable-cors: "false" 
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - angular.158.180.44.215.nip.io
+      secretName: angular-tls
   rules:
-    - host: angular.158.180.44.215.nip.io  
+    - host: angular.158.180.44.215.nip.io
       http:
         paths:
           - path: /api
