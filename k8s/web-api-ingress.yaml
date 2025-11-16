@@ -8,13 +8,54 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: nginx
+
+  # ✅ TLS only for the nip.io host (this is what cert-manager issues for)
   tls:
     - hosts:
         - angular.158.180.44.215.nip.io
       secretName: angular-tls
+
   rules:
+    # 1️⃣ Main HTTPS host (with certificate)
     - host: angular.158.180.44.215.nip.io
       http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-service
+                port:
+                  number: 80
+
+    # 2️⃣ Optional: DuckDNS host (HTTP only – cert will still be for angular.158...nip.io)
+    - host: karanam-oke.duckdns.org
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-service
+                port:
+                  number: 80
+
+    # 3️⃣ No host → matches **IP** (92.5.26.136) on HTTP
+    - http:
         paths:
           - path: /api
             pathType: Prefix
