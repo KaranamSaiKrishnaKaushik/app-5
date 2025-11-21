@@ -11,11 +11,11 @@ spec:
 
   tls:
   - hosts:
-    - karanam-oke.duckdns.org
+    - karanam-k2.duckdns.org
     secretName: angular-tls
 
   rules:
-  - host: karanam-oke.duckdns.org
+  - host: karanam-k2.duckdns.org
     http:
       paths:
       - path: /api
