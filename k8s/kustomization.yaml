@@ -14,8 +14,8 @@ resources:
 images:
   - name: dokkaushik/angular-app-5
     newName: docker.io/dokkaushik/angular-app-5
-    newTag: 6cc12f1567f620255cb38d197f801cb367a50039
+    newTag: 95a6c09ed543cdc8dc7de083ecfdbb8c01f9b413
 
   - name: dokkaushik/dotnet-app-5
     newName: docker.io/dokkaushik/dotnet-app-5
-    newTag: 6cc12f1567f620255cb38d197f801cb367a50039
+    newTag: 95a6c09ed543cdc8dc7de083ecfdbb8c01f9b413
