@@ -5,14 +5,8 @@ metadata:
   namespace: app-5-dev
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: nginx
-
-  tls:
-  - hosts:
-    - karanam-k2.duckdns.org
-    secretName: angular-tls
 
   rules:
   - host: 4.210.203.176.nip.io
